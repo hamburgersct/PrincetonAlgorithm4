@@ -4,6 +4,6 @@ public class HelloGoodbye {
         String name2 = args[1].toString();
 
         System.out.println("Hello " + name1 + " and " + name2 + ".");
-        System.out.println("Good bye " + name2 + " and " + name1 + ".");
+        System.out.println("Goodbye " + name2 + " and " + name1 + ".");
     }
 }
