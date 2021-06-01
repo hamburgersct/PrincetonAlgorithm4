@@ -28,7 +28,7 @@ public class Percolation {
         /* this UF has no virtual bottom node */
         safeGrid = new WeightedQuickUnionUF(n * n + 1);
         backwashGrid = new WeightedQuickUnionUF(n * n + 2);
-        status = new boolean[n * n + 2 ];
+        status = new boolean[n * n + 2];
         status[topIndex] = true;
         status[btmIndex] = true;
     }
@@ -36,6 +36,9 @@ public class Percolation {
     // opens the site (row, col) if it is not open already
     public void open(int row, int col) {
         int curSite = getIndex(row, col);
+        // check if this site has been clicked before
+        if (status[curSite])
+            return;
         status[curSite] = true;
         openCount += 1;
 
@@ -73,7 +76,7 @@ public class Percolation {
 
     // is the site (row, col) full? by comparing its root with the virtual top (the last second element)
     public boolean isFull(int row, int col) {
-        return safeGrid.find(getIndex(row, col)) == backwashGrid.find(topIndex);
+        return safeGrid.find(getIndex(row, col)) == safeGrid.find(topIndex);
     }
 
     // returns the number of open sites
